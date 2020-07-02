@@ -12,11 +12,11 @@
     ],
     "require": {
         "php": "^7.4",
-        "phauthentic/file-storage": "dev-master",
         "intervention/image": "^2.5",
         "spatie/image-optimizer": "^1.2"
     },
     "require-dev": {
+        "phauthentic/file-storage": "dev-master",
         "instituteweb/composer-scripts": "^1.1"
     },
     "minimum-stability": "dev",
