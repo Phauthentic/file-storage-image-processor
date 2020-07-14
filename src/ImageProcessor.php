@@ -366,6 +366,7 @@ class ImageProcessor implements ProcessorInterface
     /**
      * Resizes the image
      *
+     * @link http://image.intervention.io/api/resize
      * @param array $arguments Arguments
      * @return void
      */
@@ -392,5 +393,111 @@ class ImageProcessor implements ProcessorInterface
                 }
             }
         );
+    }
+
+    /**
+     * @link http://image.intervention.io/api/widen
+     * @param array $arguments Arguments
+     * @return void
+     */
+    public function widen(array $arguments): void
+    {
+        if (!isset($arguments['width'])) {
+            throw new InvalidArgumentException(
+                'Missing width'
+            );
+        }
+
+        $preventUpscale = $arguments['preventUpscale'] ?? false;
+
+        $this->image->widen((int)$arguments['width'], function () {
+            if ($preventUpscale) {
+                $constraint->upsize();
+            }
+        });
+    }
+
+    /**
+     * @link http://image.intervention.io/api/heighten
+     * @param array $arguments Arguments
+     * @return void
+     */
+    public function highten(array $arguments): void
+    {
+        if (!isset($arguments['height'])) {
+            throw new InvalidArgumentException(
+                'Missing height'
+            );
+        }
+
+        $preventUpscale = $arguments['preventUpscale'] ?? false;
+
+        $this->image->highten((int)$arguments['height'], function () {
+            if ($preventUpscale) {
+                $constraint->upsize();
+            }
+        });
+    }
+
+    /**
+     * @link http://image.intervention.io/api/rotate
+     * @param array $arguments Arguments
+     * @return void
+     */
+    public function rotate(array $arguments): void
+    {
+        if (!isset($arguments['angle'])) {
+            throw new InvalidArgumentException(
+                'Missing angle'
+            );
+        }
+
+        $bgcolor = $arguments['bgcolor'] ?? null;
+
+        $this->image->highten((float)$arguments['angle'], $bgcolor, function () {
+            if ($preventUpscale) {
+                $constraint->upsize();
+            }
+        });
+    }
+
+    /**
+     * @link http://image.intervention.io/api/rotate
+     * @param array $arguments Arguments
+     * @return void
+     */
+    public function sharpen(array $arguments): void
+    {
+        if (!isset($arguments['amount'])) {
+            throw new InvalidArgumentException(
+                'Missing amount'
+            );
+        }
+
+        $this->image->sharpen((int)$arguments['amount']);
+    }
+
+    /**
+     * Allows the declaration of a callable that gets the image manager instance
+     * and the arguments passed to it.
+     *
+     * @param array $arguments Arguments
+     * @return void
+     */
+    public function callback(array $arguments): void
+    {
+        if (!isset($arguments['callback'])) {
+            throw new InvalidArgumentException(
+                'Missing angle'
+            );
+        }
+
+        if (!is_callable($arguments['callback'])) {
+            throw new InvalidArgumentException(
+                'Provided value for callback is not a callable'
+            );
+        }
+
+        $arguments['callable']($this->image, $arguments);
     }
 }
