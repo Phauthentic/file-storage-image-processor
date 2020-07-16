@@ -214,6 +214,33 @@ class ImageVariant extends Variant
     }
 
     /**
+     * @link http://image.intervention.io/api/fit
+     * @param int $width Width
+     * @param int|null $height Height
+     * @param callable|null $callback Callback
+     * @param bool $preventUpscale Prevent Upscaling
+     * @param string $position Position
+     * @return $this
+     */
+    public function fit(
+        int $width,
+        ?int $height = null,
+        ?callable $callback = null,
+        bool $preventUpscale = false,
+        string $position = 'center'
+    ): self {
+        $this->operations['fit'] = [
+            'width' => $width,
+            'height' => $height,
+            'callback' => $callback,
+            'preventUpscale' => $preventUpscale,
+            'position' => $position
+        ];
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array

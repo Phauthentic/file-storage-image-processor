@@ -34,6 +34,12 @@ class ImageVariantTest extends TestCase
             ->flipHorizontal()
             ->flipVertical()
             ->flip(ImageVariant::FLIP_VERTICAL)
+            ->heighten(200)
+            ->widen(200)
+            ->crop(200, 200)
+            ->fit(200, 200)
+            ->rotate(90)
+            ->sharpen(90)
             ->optimize();
 
         $this->assertEquals('resize', $variant->name());
@@ -59,6 +65,31 @@ class ImageVariantTest extends TestCase
                 ],
                 'flip' => [
                     'direction' => 'v'
+                ],
+                'heighten' => [
+                    'height' => 200
+                ],
+                'widen' => [
+                    'width' => 200
+                ],
+                'crop' => [
+                    'width' => 200,
+                    'height' => 200,
+                    'x' => null,
+                    'y' => null
+                ],
+                'fit' => [
+                    'width' => 200,
+                    'height' => 200,
+                    'callback' => null,
+                    'preventUpscale' => false,
+                    'position' => 'center'
+                ],
+                'rotate' => [
+                    'angle' => 90
+                ],
+                'sharpen' => [
+                    'amount' => 90
                 ]
             ],
             'path' => '/',
