@@ -18,10 +18,10 @@ namespace Phauthentic\Test\TestCase\Processor\Image;
 
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
+use Phauthentic\Infrastructure\Storage\File;
 use Phauthentic\Infrastructure\Storage\FileFactory;
 use Phauthentic\Infrastructure\Storage\FileStorageInterface;
 use Phauthentic\Infrastructure\Storage\PathBuilder\PathBuilder;
-use Phauthentic\Infrastructure\Storage\PathBuilder\PathBuilderInterface;
 use Phauthentic\Infrastructure\Storage\Processor\Image\ImageVariantCollection;
 use Phauthentic\Infrastructure\Storage\Processor\Image\ImageProcessor;
 use Phauthentic\Test\TestCase\TestCase;
@@ -75,5 +75,7 @@ class ImageProcessorTest extends TestCase
         $file = $file->withVariants($collection->toArray());
 
         $file = $processor->process($file);
+
+        $this->assertInstanceOf(File::class, $file);
     }
 }

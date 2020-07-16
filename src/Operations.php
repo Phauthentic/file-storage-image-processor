@@ -84,9 +84,10 @@ class Operations
     public function crop(array $arguments): void
     {
         if (!isset($arguments['height'], $arguments['width'])) {
-            throw new InvalidArgumentException('Missing height or width');
+            throw new InvalidArgumentException('Missing width or height');
         }
 
+        $arguments = array_merge(['x' => null, 'y' => null], $arguments);
         $height = $arguments['height'] ? (int)$arguments['height'] : null;
         $width = $arguments['width'] ? (int)$arguments['width'] : null;
         $x = $arguments['x'] ? (int)$arguments['x'] : null;
