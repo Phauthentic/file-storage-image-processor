@@ -77,6 +77,58 @@ class ImageVariant extends Variant
     }
 
     /**
+     * @param int $amount Angle
+     * @return $this
+     */
+    public function sharpen(int $amount): self
+    {
+        $this->operations['sharpen'] = [
+            'amount' => $amount,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param int $angle Angle
+     * @return $this
+     */
+    public function rotate(int $angle): self
+    {
+        $this->operations['rotate'] = [
+            'angle' => $angle,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param int $height Height
+     * @return $this
+     */
+    public function heighten(int $height): self
+    {
+        $this->operations['heighten'] = [
+            'height' => $height,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param int $width Width
+     * @return $this
+     */
+    public function widen(int $width): self
+    {
+        $this->operations['widen'] = [
+            'width' => $width,
+        ];
+
+        return $this;
+    }
+
+    /**
      * @param int $width Width
      * @param int $height Height
      * @param bool $aspectRatio Keeps the aspect ratio
@@ -140,6 +192,22 @@ class ImageVariant extends Variant
 
         $this->operations['flip'] = [
             'direction' => $direction
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Allows the declaration of a callable that gets the image manager instance
+     * and the arguments passed to it.
+     *
+     * @param callable $callback callback
+     * @return $this
+     */
+    public function callback(callable $callback): self
+    {
+        $this->operations['callback'] = [
+            'callback' => $callback
         ];
 
         return $this;

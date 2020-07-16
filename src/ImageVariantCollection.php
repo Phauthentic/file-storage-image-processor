@@ -21,6 +21,7 @@ use Countable;
 use IteratorAggregate;
 use JsonSerializable;
 use Phauthentic\Infrastructure\Storage\Processor\Exception\VariantExistsException;
+use Phauthentic\Infrastructure\Storage\Processor\Image\Exception\UnsupportedOperationException;
 
 /**
  * Conversion Collection
@@ -60,7 +61,7 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
 
             foreach ($data['operations'] as $method => $args) {
                 if (!method_exists($variant, $method)) {
-                    throw new \RuntimeException('Operation not supported');
+                    UnsupportedOperationException::withName($method);
                 }
 
                 $variant = call_user_func_array([$variant, $method], $args);

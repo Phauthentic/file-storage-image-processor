@@ -14,7 +14,7 @@ grumphp:
         phpunit:
         phpstan:
             configuration: 'phpstan.neon'
-            level: 4
+            level: 5
             ignore_patterns:
                 - /^tests\/(.*)/
         phpcs:

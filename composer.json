@@ -13,7 +13,8 @@
     "require": {
         "php": "^7.4",
         "intervention/image": "^2.5",
-        "spatie/image-optimizer": "^1.2"
+        "spatie/image-optimizer": "^1.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "phauthentic/file-storage": "dev-master",
