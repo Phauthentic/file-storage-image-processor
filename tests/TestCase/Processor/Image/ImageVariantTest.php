@@ -67,10 +67,12 @@ class ImageVariantTest extends TestCase
                     'direction' => 'v'
                 ],
                 'heighten' => [
-                    'height' => 200
+                    'height' => 200,
+                    'preventUpscale' => false
                 ],
                 'widen' => [
-                    'width' => 200
+                    'width' => 200,
+                    'preventUpscale' => false
                 ],
                 'crop' => [
                     'width' => 200,
