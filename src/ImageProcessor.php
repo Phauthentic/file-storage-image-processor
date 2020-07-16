@@ -410,7 +410,7 @@ class ImageProcessor implements ProcessorInterface
 
         $preventUpscale = $arguments['preventUpscale'] ?? false;
 
-        $this->image->widen((int)$arguments['width'], function () {
+        $this->image->widen((int)$arguments['width'], function () use ($preventUpscale) {
             if ($preventUpscale) {
                 $constraint->upsize();
             }
@@ -432,7 +432,7 @@ class ImageProcessor implements ProcessorInterface
 
         $preventUpscale = $arguments['preventUpscale'] ?? false;
 
-        $this->image->highten((int)$arguments['height'], function () {
+        $this->image->highten((int)$arguments['height'], function () use ($preventUpscale) {
             if ($preventUpscale) {
                 $constraint->upsize();
             }
