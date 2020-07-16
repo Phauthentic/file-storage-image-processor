@@ -104,12 +104,14 @@ class ImageVariant extends Variant
 
     /**
      * @param int $height Height
+     * @param boolean $preventUpscale Prevent Upscaling
      * @return $this
      */
-    public function heighten(int $height): self
+    public function heighten(int $height, bool $preventUpscale = false): self
     {
         $this->operations['heighten'] = [
             'height' => $height,
+            'preventUpscale' => $preventUpscale
         ];
 
         return $this;
@@ -117,12 +119,14 @@ class ImageVariant extends Variant
 
     /**
      * @param int $width Width
+     * @param boolean $preventUpscale Prevent Upscaling
      * @return $this
      */
-    public function widen(int $width): self
+    public function widen(int $width, bool $preventUpscale = false): self
     {
         $this->operations['widen'] = [
             'width' => $width,
+            'preventUpscale' => $preventUpscale
         ];
 
         return $this;
