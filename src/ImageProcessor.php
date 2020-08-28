@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Phauthentic\Infrastructure\Storage\Processor\Image;
 
 use GuzzleHttp\Psr7\StreamWrapper;
+use http\Exception\InvalidArgumentException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use League\Flysystem\Config;
@@ -25,6 +26,7 @@ use Phauthentic\Infrastructure\Storage\Processor\Image\Exception\TempFileCreatio
 use Phauthentic\Infrastructure\Storage\PathBuilder\PathBuilderInterface;
 use Phauthentic\Infrastructure\Storage\FileStorageInterface;
 use Phauthentic\Infrastructure\Storage\Processor\ProcessorInterface;
+use Phauthentic\Infrastructure\Storage\UrlBuilder\UrlBuilderInterface;
 use Phauthentic\Infrastructure\Storage\Utility\TemporaryFile;
 
 use function Phauthentic\Infrastructure\Storage\fopen;
@@ -72,6 +74,13 @@ class ImageProcessor implements ProcessorInterface
     protected Image $image;
 
     /**
+     * Quality setting for writing images
+     *
+     * @var int
+     */
+    protected int $quality = 90;
+
+    /**
      * @param \Phauthentic\Infrastructure\Storage\FileStorageInterface $storageHandler File Storage Handler
      * @param \Phauthentic\Infrastructure\Storage\PathBuilder\PathBuilderInterface $pathBuilder Path Builder
      * @param \Intervention\Image\ImageManager $imageManager Image Manager
@@ -79,11 +88,13 @@ class ImageProcessor implements ProcessorInterface
     public function __construct(
         FileStorageInterface $storageHandler,
         PathBuilderInterface $pathBuilder,
-        ImageManager $imageManager
+        ImageManager $imageManager,
+        ?UrlBuilderInterface $urlBuilder = null
     ) {
         $this->storageHandler = $storageHandler;
         $this->pathBuilder = $pathBuilder;
         $this->imageManager = $imageManager;
+        $this->urlBuilder = $urlBuilder;
     }
 
     /**
@@ -93,6 +104,24 @@ class ImageProcessor implements ProcessorInterface
     protected function setMimeTypes(array $mimeTypes): self
     {
         $this->mimeTypes = $mimeTypes;
+
+        return $this;
+    }
+
+    /**
+     * @param int $quality Quality
+     * @return $this
+     */
+    public function setQuality(int $quality): self
+    {
+        if ($quality > 100 || $quality <= 0) {
+            throw new InvalidArgumentException(sprintf(
+                'Quality has to be a positive integer between 1 and 100. %s was provided',
+                (string)$quality
+            ));
+        }
+
+        $this->quality = $quality;
 
         return $this;
     }
@@ -221,12 +250,18 @@ class ImageProcessor implements ProcessorInterface
             } else {
                 $storage->writeStream(
                     $path,
-                    StreamWrapper::getResource($this->image->stream($file->extension(), 90)),
+                    StreamWrapper::getResource($this->image->stream($file->extension(), $this->quality)),
                     new Config()
                 );
             }
 
             $data['path'] = $path;
+            $file = $file->withVariant($variant, $data);
+
+            if ($this->urlBuilder) {
+                $data['url'] = $this->urlBuilder->urlForVariant($file, $variant);
+            }
+
             $file = $file->withVariant($variant, $data);
         }
 
