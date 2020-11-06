@@ -39,13 +39,13 @@ class ImageProcessor implements ProcessorInterface
     use OptimizerTrait;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected array $mimeTypes = [
         'image/gif',
         'image/jpg',
         'image/jpeg',
-        'image/png'
+        'image/png',
     ];
 
     /**
@@ -67,6 +67,11 @@ class ImageProcessor implements ProcessorInterface
      * @var \Intervention\Image\ImageManager
      */
     protected ImageManager $imageManager;
+
+    /**
+     * @var \Phauthentic\Infrastructure\Storage\UrlBuilder\UrlBuilderInterface|null
+     */
+    protected ?UrlBuilderInterface $urlBuilder;
 
     /**
      * @var \Intervention\Image\Image
@@ -245,8 +250,7 @@ class ImageProcessor implements ProcessorInterface
                 continue;
             }
 
-            // Reuse the same object from above
-            $this->image = clone($image);
+            $this->image = $this->imageManager->make($tempFile);
             $operations = new Operations($this->image);
 
             // Apply the operations
