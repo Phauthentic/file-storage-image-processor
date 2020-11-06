@@ -229,15 +229,15 @@ class ImageProcessor implements ProcessorInterface
             throw TempFileCreationFailedException::withFilename($tempFile);
         }
 
-        $this->image = $image = $this->imageManager->make($tempFile);
+        $image = $this->imageManager->make($tempFile);
         /*
         $file = $file->withMetadata([
             'width' => $this->image->getWidth(),
             'height' => $this->image->getHeight(),
         ]);
         */
-        $file = $file->withMetadataKey('width', $this->image->getWidth())
-            ->withMetadataKey('height', $this->image->getHeight());
+        $file = $file->withMetadataKey('width', $image->getWidth())
+            ->withMetadataKey('height', $image->getHeight());
 
         // Iterate over the variants described as an array
         foreach ($file->variants() as $variant => $data) {
