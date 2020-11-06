@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Phauthentic\\Infrastructure\\Storage\\Processor\\Image\\": "src"
+            "Phauthentic\\Infrastructure\\Storage\\Processor\\Image\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Phauthentic\\Test\\": "tests"
+            "Phauthentic\\Test\\": "tests/"
         }
     },
     "scripts": {
@@ -61,7 +61,7 @@
             "\\InstituteWeb\\ComposerScripts\\ImprovedScriptExecution::apply",
             "./bin/phpcbf ./src ./tests --standard=./phpcs.xml"
         ],
-        "analyze": [
+        "stan": [
             "\\InstituteWeb\\ComposerScripts\\ImprovedScriptExecution::apply",
             "./bin/phpstan analyse ./src -l 5"
         ],

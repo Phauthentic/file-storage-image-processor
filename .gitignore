@@ -6,3 +6,4 @@
 /bin
 coverage.xml
 phive*.phar
+/composer.lock
