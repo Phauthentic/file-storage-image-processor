@@ -61,7 +61,7 @@
             "\\InstituteWeb\\ComposerScripts\\ImprovedScriptExecution::apply",
             "./bin/phpcbf ./src ./tests --standard=./phpcs.xml"
         ],
-        "stan": [
+        "analyze": [
             "\\InstituteWeb\\ComposerScripts\\ImprovedScriptExecution::apply",
             "./bin/phpstan analyse ./src -l 5"
         ],

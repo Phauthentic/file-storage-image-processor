@@ -64,6 +64,11 @@ class ImageProcessor implements ProcessorInterface
     protected PathBuilderInterface $pathBuilder;
 
     /**
+     * @var \Phauthentic\Infrastructure\Storage\UrlBuilder\UrlBuilderInterface
+     */
+    protected UrlBuilderInterface $urlBuilder;
+
+    /**
      * @var \Intervention\Image\ImageManager
      */
     protected ImageManager $imageManager;
@@ -258,7 +263,7 @@ class ImageProcessor implements ProcessorInterface
             $data['path'] = $path;
             $file = $file->withVariant($variant, $data);
 
-            if ($this->urlBuilder) {
+            if ($this->urlBuilder !== null) {
                 $data['url'] = $this->urlBuilder->urlForVariant($file, $variant);
             }
 
