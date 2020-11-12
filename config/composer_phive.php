@@ -23,7 +23,7 @@ $keys = [
 ];
 $keys = implode(',', $keys);
 
-$output = '';
-exec('php .' . $ds . 'phive.phar install --target .' . $ds . 'bin --trust-gpg-keys --trust-gpg-keys ' . $keys, $output);
+$output = [];
+exec('php .' . $ds . 'phive.phar install --target .' . $ds . 'bin --trust-gpg-keys ' . $keys, $output);
 
 echo implode(PHP_EOL, $output);
