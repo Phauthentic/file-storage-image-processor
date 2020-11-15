@@ -66,7 +66,7 @@ class ImageProcessor implements ProcessorInterface
     /**
      * @var \Phauthentic\Infrastructure\Storage\UrlBuilder\UrlBuilderInterface
      */
-    protected UrlBuilderInterface $urlBuilder;
+    protected ?UrlBuilderInterface $urlBuilder;
 
     /**
      * @var \Intervention\Image\ImageManager
