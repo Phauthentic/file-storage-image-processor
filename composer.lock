@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.6.1",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -30,24 +30,24 @@
             },
             "require-dev": {
                 "ext-zlib": "*",
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.10"
             },
             "suggest": {
-                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -55,12 +55,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 }
             ],
@@ -75,7 +96,21 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-07-01T23:21:34+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "intervention/image",
@@ -362,12 +397,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -613,40 +648,37 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Phauthentic/file-storage.git",
-                "reference": "a4ef1c58eafde26b8cff0e210e12f4607af0d62c"
+                "reference": "05648840e734ef09ddeabe74c6f7eac1b5a6d5db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Phauthentic/file-storage/zipball/a4ef1c58eafde26b8cff0e210e12f4607af0d62c",
-                "reference": "a4ef1c58eafde26b8cff0e210e12f4607af0d62c",
+                "url": "https://api.github.com/repos/Phauthentic/file-storage/zipball/05648840e734ef09ddeabe74c6f7eac1b5a6d5db",
+                "reference": "05648840e734ef09ddeabe74c6f7eac1b5a6d5db",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "guzzlehttp/psr7": "^1.6",
                 "phauthentic/file-storage-factories": "dev-develop",
                 "php": "^7.4",
                 "psr/http-message": "^1.0"
             },
             "require-dev": {
                 "instituteweb/composer-scripts": "^1.1",
-                "intervention/image": "^2.5",
-                "spatie/image-optimizer": "^1.2"
+                "phauthentic/file-storage-image-processor": "dev-master"
             },
             "suggest": {
-                "intervention/image": "^2.5",
-                "spatie/image-optimizer": "^1.2"
+                "phauthentic/file-storage-image-processor": "You must install this for image processing"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Phauthentic\\Infrastructure\\Storage\\": "src"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "Phauthentic\\Infrastructure\\Storage\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -669,7 +701,7 @@
                 "persistence",
                 "storage"
             ],
-            "time": "2020-07-02T07:49:19+00:00"
+            "time": "2020-11-03T00:29:43+00:00"
         },
         {
             "name": "phauthentic/file-storage-factories",
@@ -677,24 +709,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Phauthentic/file-storage-factories.git",
-                "reference": "a1abec340a2d6be5514869853d601611db944ed2"
+                "reference": "08b6e449c22f4021816f36493374cfdd9fb72d16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Phauthentic/file-storage-factories/zipball/a1abec340a2d6be5514869853d601611db944ed2",
-                "reference": "a1abec340a2d6be5514869853d601611db944ed2",
+                "url": "https://api.github.com/repos/Phauthentic/file-storage-factories/zipball/08b6e449c22f4021816f36493374cfdd9fb72d16",
+                "reference": "08b6e449c22f4021816f36493374cfdd9fb72d16",
                 "shasum": ""
             },
             "require": {
                 "league/flysystem": "^1.0",
-                "php": "^7.4",
+                "php": ">=7.4",
                 "psr/container": "^1.0"
             },
             "require-dev": {
                 "instituteweb/composer-scripts": "^1.1",
-                "league/flysystem-aws-s3-v3": "^1.0",
+                "league/flysystem-aws-s3-v3": "^1.0.29",
                 "league/flysystem-azure": "^1.0",
-                "league/flysystem-azure-blob-storage": "^0.1",
+                "league/flysystem-azure-blob-storage": "^1.0",
                 "league/flysystem-gridfs": "^1.0",
                 "league/flysystem-memory": "^1.0",
                 "league/flysystem-rackspace": "^1.0",
@@ -707,7 +739,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Phauthentic\\Infrastructure\\Storage\\": "src"
+                    "Phauthentic\\Infrastructure\\Storage\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -721,7 +753,7 @@
                 }
             ],
             "description": "This library is a factory to instantiate storage adapters based on the Flysystem library.",
-            "homepage": "http://github.com/burzum/storage-factory",
+            "homepage": "https://github.com/burzum/storage-factory",
             "keywords": [
                 "abstraction",
                 "dropbox",
@@ -733,7 +765,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-07-01T21:23:14+00:00"
+            "time": "2020-11-13T12:24:53+00:00"
         },
         {
             "name": "psr/container",
