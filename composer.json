@@ -11,12 +11,12 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "intervention/image": "^2.5",
         "spatie/image-optimizer": "^1.2"
     },
     "require-dev": {
-        "phauthentic/file-storage": "dev-master",
+        "phauthentic/file-storage": "^1.0",
         "instituteweb/composer-scripts": "^1.1"
     },
     "minimum-stability": "dev",
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Phauthentic\\Infrastructure\\Storage\\Processor\\Image\\": "src"
+            "Phauthentic\\Infrastructure\\Storage\\Processor\\Image\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Phauthentic\\Test\\": "tests"
+            "Phauthentic\\Test\\": "tests/"
         }
     },
     "scripts": {
