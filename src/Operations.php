@@ -40,9 +40,10 @@ class Operations
 
     /**
      * @param string $name Name
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
+     * @return mixed
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         throw UnsupportedOperationException::withName($name);
     }
@@ -51,7 +52,7 @@ class Operations
      * Crops the image
      *
      * @link http://image.intervention.io/api/fit
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function fit(array $arguments): void
@@ -78,7 +79,7 @@ class Operations
      * Crops the image
      *
      * @link http://image.intervention.io/api/crop
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function crop(array $arguments): void
@@ -122,7 +123,7 @@ class Operations
      * Flips the image
      *
      * @link http://image.intervention.io/api/flip
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function flip(array $arguments): void
@@ -144,7 +145,7 @@ class Operations
      * Resizes the image
      *
      * @link http://image.intervention.io/api/resize
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function resize(array $arguments): void
@@ -174,7 +175,7 @@ class Operations
 
     /**
      * @link http://image.intervention.io/api/widen
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function widen(array $arguments): void
@@ -196,7 +197,7 @@ class Operations
 
     /**
      * @link http://image.intervention.io/api/heighten
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function heighten(array $arguments): void
@@ -218,7 +219,7 @@ class Operations
 
     /**
      * @link http://image.intervention.io/api/rotate
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function rotate(array $arguments): void
@@ -234,7 +235,7 @@ class Operations
 
     /**
      * @link http://image.intervention.io/api/rotate
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function sharpen(array $arguments): void
@@ -252,7 +253,7 @@ class Operations
      * Allows the declaration of a callable that gets the image manager instance
      * and the arguments passed to it.
      *
-     * @param array $arguments Arguments
+     * @param array<string, mixed> $arguments Arguments
      * @return void
      */
     public function callback(array $arguments): void

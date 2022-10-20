@@ -17,16 +17,15 @@ declare(strict_types=1);
 namespace Phauthentic\Infrastructure\Storage\Processor\Image;
 
 use ArrayIterator;
-use Countable;
-use IteratorAggregate;
-use JsonSerializable;
+use Iterator;
 use Phauthentic\Infrastructure\Storage\Processor\Exception\VariantExistsException;
 use Phauthentic\Infrastructure\Storage\Processor\Image\Exception\UnsupportedOperationException;
+use ReflectionClass;
 
 /**
  * Conversion Collection
  */
-class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Countable
+class ImageVariantCollection implements ImageVariantCollectionInterface
 {
     /**
      * @var array
@@ -39,6 +38,31 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
     public static function create(): self
     {
         return new self();
+    }
+
+    /**
+     * Workaround for php 8 because call_user_func_array will now behave this way:
+     * args keys will now be interpreted as parameter names, instead of being silently ignored.
+     *
+     * @param object $object
+     * @param string $method
+     * @param array<string, mixed> $args
+     * @return array<string, mixed>
+     */
+    protected static function filterArgs(object $object, string $method, array $args): array
+    {
+        $filteredArgs = [];
+        $variantReflection = new ReflectionClass($object);
+        $methodReflection = $variantReflection->getMethod($method);
+        $reflectionParameters = $methodReflection->getParameters();
+
+        foreach ($reflectionParameters as $parameter) {
+            if (isset($args[$parameter->getName()])) {
+                $filteredArgs[$parameter->getName()] = $args[$parameter->getName()];
+            }
+        }
+
+        return $filteredArgs;
     }
 
     /**
@@ -64,7 +88,10 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
                     UnsupportedOperationException::withName($method);
                 }
 
-                $variant = call_user_func_array([$variant, $method], $args);
+                $variant = call_user_func_array(
+                    [$variant, $method],
+                    self::filterArgs($variant, $method, $args)
+                );
             }
 
             $that->add($variant);
@@ -87,9 +114,10 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
     /**
      * Gets a manipulation from the collection
      *
+     * @param string $name
      * @return \Phauthentic\Infrastructure\Storage\Processor\Image\ImageVariant
      */
-    public function get($name): ImageVariant
+    public function get(string $name): ImageVariant
     {
         return $this->variants[$name];
     }
@@ -127,7 +155,7 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->toArray();
     }
@@ -135,7 +163,7 @@ class ImageVariantCollection implements JsonSerializable, IteratorAggregate, Cou
     /**
      * @inheritDoc
      */
-    public function getIterator()
+    public function getIterator(): Iterator
     {
         return new ArrayIterator($this->variants);
     }

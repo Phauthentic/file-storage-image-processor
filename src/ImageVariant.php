@@ -25,7 +25,12 @@ use Phauthentic\Infrastructure\Storage\Processor\Variant;
 class ImageVariant extends Variant
 {
     protected string $name;
-    protected array $operations;
+
+    /**
+     * @var array<int, string>
+     */
+    protected array$operations;
+
     protected string $path = '';
     protected bool $optimize = false;
     protected string $url = '';
@@ -245,7 +250,7 @@ class ImageVariant extends Variant
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

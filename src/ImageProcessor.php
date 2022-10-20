@@ -39,7 +39,7 @@ class ImageProcessor implements ProcessorInterface
     use OptimizerTrait;
 
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected array $mimeTypes = [
         'image/gif',
@@ -49,7 +49,7 @@ class ImageProcessor implements ProcessorInterface
     ];
 
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected array $processOnlyTheseVariants = [];
 
