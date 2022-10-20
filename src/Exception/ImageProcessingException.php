@@ -23,5 +23,4 @@ use Phauthentic\Infrastructure\Storage\Processor\Exception\VariantException;
  */
 class ImageProcessingException extends VariantException
 {
-
 }
