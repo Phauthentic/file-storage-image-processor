@@ -28,7 +28,7 @@ use ReflectionClass;
 class ImageVariantCollection implements ImageVariantCollectionInterface
 {
     /**
-     * @var array
+     * @var array<string, \Phauthentic\Infrastructure\Storage\Processor\Image\ImageVariant>
      */
     protected array $variants = [];
 
@@ -66,7 +66,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @param array $variants Variant array structure
+     * @param array<string, array<string, mixed>> $variants Variant array structure
      * @return self
      */
     public static function fromArray(array $variants)
@@ -169,7 +169,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function toArray(): array
     {
