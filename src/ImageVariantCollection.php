@@ -88,11 +88,11 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
                     UnsupportedOperationException::withName($method);
                 }
 
-                /** @var callable $callback */
-                $callback = [$variant, $method];
+                /** @var array<mixed> $parameters */
+                $parameters = self::filterArgs($variant, $method, $args);
                 $variant = call_user_func_array(
-                    $callback,
-                    self::filterArgs($variant, $method, $args)
+                    [$variant, $method],
+                    $parameters
                 );
             }
 
