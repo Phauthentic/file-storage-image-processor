@@ -155,7 +155,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * @return array<string, array<string, mixed>>
      */
     public function jsonSerialize(): array
     {
