@@ -157,7 +157,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
