@@ -28,7 +28,7 @@ use ReflectionClass;
 class ImageVariantCollection implements ImageVariantCollectionInterface
 {
     /**
-     * @var array
+     * @var array<string, \Phauthentic\Infrastructure\Storage\Processor\Image\ImageVariant>
      */
     protected array $variants = [];
 
@@ -66,7 +66,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @param array $variants Variant array structure
+     * @param array<string, array<string, mixed>> $variants Variant array structure
      * @return self
      */
     public static function fromArray(array $variants)
@@ -88,9 +88,11 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
                     UnsupportedOperationException::withName($method);
                 }
 
+                /** @var array<mixed> $parameters */
+                $parameters = self::filterArgs($variant, $method, $args);
                 $variant = call_user_func_array(
                     [$variant, $method],
-                    self::filterArgs($variant, $method, $args)
+                    $parameters
                 );
             }
 
@@ -153,9 +155,9 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * @return array<string, array<string, mixed>>
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
@@ -169,7 +171,7 @@ class ImageVariantCollection implements ImageVariantCollectionInterface
     }
 
     /**
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function toArray(): array
     {

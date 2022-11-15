@@ -1,9 +1,9 @@
-/.idea
-/.phpunit.result.cache
-/tmp
-/logs
-/vendor/
-/bin
+.idea/
+.phpunit.result.cache
+tmp/
+logs/
+vendor/
+bin/
 coverage.xml
 phive*.phar
-/composer.lock
+composer.lock

@@ -29,7 +29,7 @@ class ImageVariant extends Variant
     /**
      * @var array<int, string>
      */
-    protected array$operations;
+    protected array $operations;
 
     protected string $path = '';
     protected bool $optimize = false;

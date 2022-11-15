@@ -103,7 +103,7 @@ class ImageProcessor implements ProcessorInterface
     }
 
     /**
-     * @param array $mimeTypes Mime Type List
+     * @param array<int, string> $mimeTypes Mime Type List
      * @return $this
      */
     protected function setMimeTypes(array $mimeTypes): self
@@ -142,7 +142,7 @@ class ImageProcessor implements ProcessorInterface
     }
 
     /**
-     * @param array $variants Variants by name
+     * @param array<int, string> $variants Variants by name
      * @return $this
      */
     public function processOnlyTheseVariants(array $variants): self
@@ -193,7 +193,7 @@ class ImageProcessor implements ProcessorInterface
 
     /**
      * @param string $variant Variant name
-     * @param array $variantData Variant data
+     * @param array<string, mixed> $variantData Variant data
      * @return bool
      */
     protected function shouldProcessVariant(string $variant, array $variantData): bool
