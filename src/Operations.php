@@ -71,7 +71,8 @@ class Operations
                 if ($preventUpscale) {
                     $constraint->upsize();
                 }
-            }
+            },
+            $arguments['position'] ?? 'center',
         );
     }
 
